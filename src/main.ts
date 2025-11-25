@@ -10,7 +10,7 @@ import { ValidationPipe } from '@nestjs/common';
  * 
  */
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule); // create Nest application in here 
   // setting global pipes for DTO 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -19,7 +19,8 @@ async function bootstrap() {
       transform: true,         
     })
   );
+  //Http server 
   await app.listen(process.env.PORT ?? 3000);
   console.log(`Server running on port ${process.env.PORT}`);
 }
-bootstrap();
+bootstrap();// we start the app in here 
