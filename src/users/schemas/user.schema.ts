@@ -5,17 +5,17 @@ import { Document } from 'mongoose';
 @Schema({timestamps: true})
 export class User {
 @Prop({required: true, unique: true, trim: true, lowercase:true})
-email: string
+email: string;
 
 @Prop({required: true})
-password_hash:string
+password:string;
 
 @Prop({required: true, enum: ["business", "talent"], default:"talent"})
-role: "talent" | "business"
+role: "talent" | "business";
 
-_id?: string
+_id?: string;
 
 }
 
 export type UserDocument = User & Document;
-export const UserSchema = SchemaFactory.createForClass(User)
+export const UserSchema = SchemaFactory.createForClass(User);

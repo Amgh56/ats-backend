@@ -15,10 +15,10 @@ export class UsersService {
   
   async createUser(
     email: string,
-    password_hash: string,
+    password: string,
     role: 'business' | 'talent',
   ): Promise<User> {
-    const createdUser = new this.userModel({ email, password_hash, role });
+    const createdUser = new this.userModel({ email, password, role });
     return createdUser.save();
   }
 }
