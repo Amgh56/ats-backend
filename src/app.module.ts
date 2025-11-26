@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JobsModule } from './jobs/jobs.module';
+import { ApplicationsModule } from './applications/applications.module';
 
 @Module({
   imports: [MongooseModule.forRoot(process.env.MONGO_URI as string, {
@@ -12,7 +13,7 @@ import { JobsModule } from './jobs/jobs.module';
       console.log("MongoDB Connected Successfully:", connection.name);
       return connection;
     },
-   }), UsersModule, AuthModule, JobsModule
+   }), UsersModule, AuthModule, JobsModule, ApplicationsModule
   ],
   controllers: [AppController],
   providers: [AppService],

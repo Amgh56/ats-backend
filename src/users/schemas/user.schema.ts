@@ -8,7 +8,7 @@ export class User {
 email: string;
 
 @Prop({required: true})
-password:string;
+password_hash:string;
 
 @Prop({required: true, enum: ["business", "talent"], default:"talent"})
 role: "talent" | "business";
