@@ -10,11 +10,9 @@ How to run?
 # 1. Clone the repository
 git clone https://github.com/Amgh56/ats-backend.git
 
-```bash
 # 2. Install dependencies
 npm install
 
-```bash
 # 3. Start the development server
 npm run start:dev
 
