@@ -16,3 +16,4 @@ npm install
 # 3. Start the development server
 npm run start:dev
 
+and you should use another terminal to check each function and send requests if you are wishing to test it from the terminal.
