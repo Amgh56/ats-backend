@@ -3,7 +3,7 @@ import { extname, basename, join } from 'path';
 import { existsSync } from 'fs';
 
 export const multerConfig = {
-  storage: diskStorage({
+  storage: diskStorage({//TODO fix the destination 
     destination: '/Users/abdullamaghrabi/Desktop/uploads',
 
     filename: (req, file, callback) => {
