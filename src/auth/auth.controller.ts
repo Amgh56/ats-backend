@@ -32,8 +32,9 @@ export class AuthController {
     schema: {
       example: {
         statusCode: 400,
-        message: 'Email is already registered',
         error: 'Bad Request',
+        message: 'Email is already registered',
+        
       }
     }
   })
@@ -47,15 +48,19 @@ export class AuthController {
     @ApiOperation({ summary: 'Login and receive a JWT token', description: 'How to use this endpoint:\n' +
     '1. Enter your registered email and password.\n' +
     '2. Submit the request to receive your access_token.\n' +
-    '3. Use the access_token in the Swagger Authorize button for protected endpoints.' })
+    '3. Use the access_token in the Swagger Authorize button for protected endpoints.\n'+
+    'Note:\n' +
+    '- The access token returned here must be added using the Authorize button in Swagger.\n' +
+    '- This token is required to test protected routes such as creating jobs or viewing applicants etc.\n'
+  })
     @ApiBody({type: LoginDto,description: 'User login credentials',})
     @ApiOkResponse({description: 'Login successful. Returns JWT token.',
     schema: {
     example: {
-      access_token: " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTI4NmY0MmY5OGIzNWY1ZjFlMDg2NWUiLCJlbWFpbCI6Im93bmVyQHRlc3QuY29tIiwicm9sZSI6ImJ1c2luZXNzIiwiaWF0IjoxNzY0MjU4ODQwLCJleHAiOjE3NjQyNjA2NDB9.PuMz922TNI9HtANVaiyr0teHkwXizF4Jm755U1PXucQ",
+      access_token: " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTI4N......",
       user: {
         id: "6730dd1c4a07cf5ae14de5f2",
-        email: "abdullah@gmail.com",
+        email: "abdullahHaitham@gmail.com",
         role: "business"
         }
       }
@@ -88,7 +93,7 @@ export class AuthController {
     schema: {
       example: {
         id: "6730dd1c4a07cf5ae14de5f2",
-        email: "abdullah@gmail.com",
+        email: "abdullahHaitham@gmail.com",
         role: "business"
       }
     }

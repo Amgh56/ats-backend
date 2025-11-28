@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 // Register Dto validation we make sure that the data sent from the user is correct.
 export class RegisterDto {
   @ApiProperty({
-    example: 'Abdullah@gmail.com',
+    example: 'AbdullahHaitham@gmail.com',
     description: 'A valid and unique email address for the new user.',
   })
   @IsEmail()

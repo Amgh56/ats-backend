@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 //Login Dto here we check that the data we recieved is within our rules.
 export class LoginDto {
   @ApiProperty({
-    example: 'Abdullah@gmail.com',
+    example: 'AbdullahHaitham@gmail.com',
     description: 'The registered email address of the user',
   })
   @IsEmail()

@@ -25,7 +25,11 @@ export class ApplicationsController {
         '1. Fill the fields: name, email, and jobId.\n' +
         '2. Upload your resume as a PDF file in the "resume" field.\n' +
         '3. Upload your applicant image as a PNG file in the "applicantImage" field.\n' +
-        '4. Click "Execute" to submit the application.\n',
+        '4. Click "Execute" to submit the application.\n' +
+        'Note \n' +
+        '- You get the jobid from the job you created with beside _id  it will be something  similar to this (692737828b2fa163082e938c) \n' +
+        '- You can find the pdf you uploaded and image in vs code under the /upload folder'
+        ,
       })
       @ApiConsumes('multipart/form-data')
       @ApiBody({
@@ -34,7 +38,7 @@ export class ApplicationsController {
           type: 'object',
           properties: {
             name: { type: 'string', example: 'Abdullah' },
-            email: { type: 'string', example: 'Abdullah@gmail.com' },
+            email: { type: 'string', example: 'AbdullahHaitham@gmail.com' },
             jobId: { type: 'string', example: '6730dfc14a07cf5ae14df100' },
             resume: { type: 'string', format: 'binary', description: 'PDF file' },
             applicantImage: { type: 'string', format: 'binary', description: 'PNG image' },
@@ -48,8 +52,8 @@ export class ApplicationsController {
           example: {
             _id: '6730f0ab4a07cf5ae14df999',
             name: 'Abdullah',
-            email: 'Abdullah@gmail.com',
-            jobId: '6730dfc14a07cf5ae14df100',
+            email: 'AbdullahHaitham@gmail.com',
+            jobId: '692737828b2fa163082e938c',
             resume: {
               filename: 'resume.pdf',
               path: 'uploads/resume_12345.pdf',
@@ -122,7 +126,11 @@ export class ApplicationsController {
     '2. Copy your access_token from the /auth/login response.\n' +
     '3. Click on the Authorize button in Swagger and paste: Bearer <token>.\n' +
     '4. Enter the jobId of the job you own in the URL path.\n' +
-    '5. Execute the request to view all applicants for this job.\n\n' })
+    '5. Execute the request to view all applicants for this job.\n' +
+    'Note:\n'+
+    '- To test this endpoint you will need to enter the jobId for the job you want to view its applicant list \n'+
+    '- Note: you must put the access token in the authorize button provided from swagger and you have to be the job creator to be able to view the applicants.'
+  })
     @ApiParam({
         name: 'jobId',
         example: '6730dfc14a07cf5ae14df100',
@@ -135,7 +143,7 @@ export class ApplicationsController {
             {
               _id: '6730f5dd4a07cf5ae14dfabc',
               name: 'Abdullah',
-              email: 'Abdullah@gmail.com',
+              email: 'AbdullahHaitham@gmail.com',
               jobId: '6730dfc14a07cf5ae14df100',
               resume: {
                 filename: 'resume.pdf',
@@ -201,9 +209,12 @@ export class ApplicationsController {
   @ApiOperation({ summary: 'Update application status (accept or reject)', description:'How to use this endpoint:\n' +
   '1. Login as the owner of the job** related to this application.\n' +
   '2. Copy your access_token from /auth/login.\n' +
-  '3. Click the Authorize button in Swagger and paste: Bearer <token>.\n' +
+  '3. Click the Authorize button in Swagger and paste: your access token.\n' +
   '4. Provide the applicationId in the URL path.\n' +
-  '5. In the request body, set status to either accepted or rejected'})
+  '5. In the request body, set status to either accepted or rejected\n' +
+  'Note:\n' +
+  '- To change applicant status you must be the creator of the job and make sure that you entered the access token.'
+})
   @ApiParam({
     name: 'applicationId',
     example: '6730f8a44a07cf5ae14dfb99',
@@ -228,7 +239,7 @@ export class ApplicationsController {
       example: {
         _id: '6730f8a44a07cf5ae14dfb99',
         name: 'Abdullah',
-        email: 'Abdullah@gmail.com',
+        email: 'AbdullahHaitham@gmail.com',
         jobId: '6730dfc14a07cf5ae14df100',
         resume: {
           filename: 'resume.pdf',

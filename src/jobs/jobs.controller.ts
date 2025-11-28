@@ -24,8 +24,10 @@ export class JobsController {
 @ApiOperation({ summary: 'Create a new job post Business users only are allowed to create one' ,description: 'How to test this endpoint in Swagger:\n' +
 '1. Register a business user using POST /auth/register.\n' +
 '2. Login using POST /auth/login and copy the access_token.\n' +
-'3. Click the "Authorize" button in Swagger and enter: Bearer <token>.\n' +
-'4. Call this POST /jobs endpoint to create a job.',})
+'3. Click the "Authorize" button in Swagger and enter: paste your access token.\n' +
+'4. Call this POST /jobs endpoint to create a job.\n ' +
+'Note:\n' +
+    '- To test this you need to copy the token you got when you logged in and past it in the authorize button and then press execute to make sure you are a business user. \n'})
 @ApiBody({
   type: CreateJobsDto,
   description: 'Job details required to create a job post.',
@@ -91,7 +93,10 @@ async createJob(@Req() req: any, @Body() dto: CreateJobsDto) {
     '1. Login as a business user.\n' +
     '2. Copy your access_token and click "Authorize" in Swagger.\n' +
     '3. Only the owner of the job can update it.\n' +
-    '4. Provide the job Id in the URL and the updated fields in the body.',
+    '4. Provide the job Id in the URL and the updated fields in the body.\n '+
+    'Note:\n' +
+   ' - To test this you need to get the _id from the job u just created make sure the id is from the job u created server response not from the example response.'
+    ,
 })
 @ApiParam({
   name: 'id',
@@ -178,7 +183,11 @@ async updateJob(@Param('id') id: string,@Req() req:any, @Body() dto: UpdateJobDt
     '2. Copy the access_token returned from /auth/login.\n' +
     '3. Click "Authorize" in Swagger and paste: Bearer <token>.\n' +
     '4. Only the owner of the job can delete it.\n' +
-    '5. Provide the job Id in the URL.',
+    '5. Provide the job Id in the URL. \n'+
+    'Note \n' +
+    '- Make sure you entered the id for the job you are authorized to delete if you want to test if delete works or not. \n' +
+    '- again the acess token must be entered in the authorize button in swagger'
+    ,
 })
 @ApiParam({name: 'id',
   example: '6730dfc14a07cf5ae14df100',
