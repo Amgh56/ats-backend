@@ -13,6 +13,7 @@ git clone https://github.com/Amgh56/ats-backend.git
 
 2. Go to the project directory:
 
+```bash
 cd ats-backend
 
 3. Install dependencies:
