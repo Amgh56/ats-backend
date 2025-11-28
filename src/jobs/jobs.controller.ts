@@ -5,13 +5,19 @@ import { CreateJobsDto } from './dto/createJob.dto';
 import { UpdateJobDto } from './dto/updateJop.dto';
 import {ApiTags,ApiOkResponse,ApiForbiddenResponse,ApiNotFoundResponse, ApiUnauthorizedResponse,ApiOperation,ApiCreatedResponse,ApiBody,ApiBearerAuth,ApiResponse,ApiParam,ApiExtraModels} from '@nestjs/swagger';
 import { Jobs } from './schemas/job.schema';
+
+// JobController handles everything related to job posts.
+// it allows only business owners to post, update, edit, delette 
+// and also consider ownership 
 @ApiTags('Jobs')
 @ApiExtraModels(Jobs)
 @Controller('jobs')
 export class JobsController {
     constructor(private readonly jobsService: JobsService){}
 
-// create the job post only business users are allowed and the user is logged in 
+// This function is responsible about creating a job
+// it makes sure the user creating a job is logged in.
+// and that his role is buisness
 @UseGuards(AuthGuard('jwt'))
 @Post()
 @ApiBearerAuth()
@@ -61,19 +67,20 @@ export class JobsController {
 async createJob(@Req() req: any, @Body() dto: CreateJobsDto) {
   const user = req.user; 
 
-  // Check if user is business
   if (user.role !== 'business') {
     throw new ForbiddenException('Only business users can create jobs');
   }
 
   const ownerId = user.userId;  
 
-  // Create the job in mongo using JobsService
   const newJob = await this.jobsService.createJob(dto, ownerId);
 
   return newJob;
 }
 
+// This function is responsible about updating jobs
+// its first checks that the user is logged in 
+// and that the job he is updating belongs to the same user by checking job owner id and user id returned from the jwt signature 
 @UseGuards(AuthGuard('jwt'))
 @Patch(':id')
 @ApiBearerAuth()
@@ -158,6 +165,8 @@ async updateJob(@Param('id') id: string,@Req() req:any, @Body() dto: UpdateJobDt
 }
 
 
+// This function is responsible about deleting the job 
+// it checks that the user is logged in and the job belongs to the user welling to delete
 @UseGuards(AuthGuard('jwt'))
 @Delete(':id')
 @ApiBearerAuth()
@@ -173,7 +182,7 @@ async updateJob(@Param('id') id: string,@Req() req:any, @Body() dto: UpdateJobDt
 })
 @ApiParam({name: 'id',
   example: '6730dfc14a07cf5ae14df100',
-  description: 'The ID of the job you want to delete',
+  description: 'The id of the job you want to delete',
 })
 @ApiOkResponse({description: 'Job deleted successfully',
   schema: {

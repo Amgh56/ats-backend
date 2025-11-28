@@ -5,6 +5,7 @@ import { Application, ApplicationDocument } from './schemas/applications.schema'
 import { CreateApplicationDto } from './dto/applications.dto';
 import { Jobs, JobsDocument } from '../jobs/schemas/job.schema';
 
+// This service handles everything related to job applications.
 @Injectable()
 export class ApplicationsService {
     constructor(@InjectModel(Application.name)
@@ -13,6 +14,8 @@ export class ApplicationsService {
         private jobModel: Model<JobsDocument>,
       )  {}
         
+      // This function handles applicant applying to a job logic 
+      // checks if the files are uploaded or not, validates if the job exsists, prevent duplicate application for the same job. 
       async createApplication(dto:CreateApplicationDto,files:{resume?: Express.Multer.File[],
         applicantImage?:Express.Multer.File[]}){
         if(!files.resume || !files.resume[0]){
@@ -52,6 +55,9 @@ export class ApplicationsService {
         return created.save();
 
       }
+
+      // Returns all applicants who applied to a specific job.
+      // Only the job owner is allowed to view this list.
       async getApplicantsForJob(jobId: string, requesterId: string) {
         const job = await this.jobModel.findById(jobId);
         if (!job) {
@@ -64,6 +70,8 @@ export class ApplicationsService {
          return this.applicationModel.find({ jobId });
       }
       
+      // Updates the status of an application (accepted or rejected).
+      // Only the job owner can decide. 
       async updateApplicationStatus( applicationId: string,  newStatus: 'accepted' | 'rejected',
         requesterId: string,
       ) {

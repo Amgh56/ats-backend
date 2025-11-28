@@ -1,6 +1,7 @@
 import { IsIn, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+// Used to update an user application status.
 export class UpdateStatusDto {
   @ApiProperty({
         example: 'accepted',

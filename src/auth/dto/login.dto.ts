@@ -1,6 +1,7 @@
 import { IsEmail, IsString, MinLength, MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+//Login Dto here we check that the data we recieved is within our rules.
 export class LoginDto {
   @ApiProperty({
     example: 'Abdullah@gmail.com',

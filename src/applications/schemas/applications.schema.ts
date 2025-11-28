@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
+// Applications design schema
 @Schema({ timestamps: true })
 export class Application {
   @ApiProperty({

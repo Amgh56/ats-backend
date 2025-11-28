@@ -1,7 +1,7 @@
 import { IsString, IsNumber, IsOptional, Min, IsNotEmpty } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
-// DTO used to validate updates to a job post
+// This class validate the incoming data from the buisness owner before updating and saving the updates to the database
 export class UpdateJobDto {
   @ApiPropertyOptional({
     example: 'Senior Backend Developer',

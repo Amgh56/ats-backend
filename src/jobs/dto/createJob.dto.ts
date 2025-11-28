@@ -1,6 +1,8 @@
 import { IsString, IsNotEmpty, IsNumber, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+// This class make sure that the data sent from the user to create a job is correct and pass our constraints.
+// before the job is created and saved to the database.
 export class CreateJobsDto {
   @ApiProperty({
     example: 'Backend Developer',

@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { JobsModule } from './jobs/jobs.module';
 import { ApplicationsModule } from './applications/applications.module';
 
+// connecting all modules to MongoDb in here. 
 @Module({
   imports: [MongooseModule.forRoot(process.env.MONGO_URI as string, {
     connectionFactory: (connection) => {

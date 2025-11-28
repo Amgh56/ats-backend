@@ -7,17 +7,15 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 
-/**
- * 
- */
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule); // create Nest application in here 
+  const app = await NestFactory.create(AppModule); 
 
   const config = new DocumentBuilder()
     .setTitle('ATS API Documentation')
     .setDescription('API documentation for the Applicant Tracking System')
     .setVersion('1.0')
-    .addBearerAuth()  // Adds the JWT "Authorize" button
+    .addBearerAuth()  // adding the authorize token in swagger in here 
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -30,8 +28,8 @@ async function bootstrap() {
       transform: true,         
     })
   );
-  //Http server 
+
   await app.listen(process.env.PORT ?? 3000);
   console.log(`Server running on port ${process.env.PORT}`);
 }
-bootstrap();// we start the app in here 
+bootstrap();

@@ -6,7 +6,7 @@ import { LoginDto } from './dto/login.dto';
 import {ApiUnauthorizedResponse, ApiOkResponse,ApiTags, ApiOperation, ApiResponse, ApiBearerAuth ,ApiBody,ApiCreatedResponse,ApiBadRequestResponse} from '@nestjs/swagger';
 
 
-// an auth route this route will be responsible for all the authorized actions like job creation deletion login etc.
+// An auth route this route will be responsible for all the authorized actions like job creation deletion login etc.
 @ApiTags('Auth')  
 @Controller('auth')
 export class AuthController {
@@ -24,7 +24,7 @@ export class AuthController {
     example: {
       id: "6730dd1c4a07cf5ae14de5f2",
       email: "abdullah@gmail.com",
-      role: "buisness"
+      role: "business"
     }
   }
 })
@@ -80,7 +80,8 @@ export class AuthController {
   'How to use this endpoint:\n' +
   '1. Login using /auth/login and copy the access_token.\n' +
   '2. Click the Swagger Authorize button and paste: Bearer <token>.\n' +
-  '3. Call this endpoint to get your user information.' })
+  '3. Call this endpoint to get your user information.\n' +
+  '4. This well be used later to make sure only logged in business users can do actions.' })
   @ApiBearerAuth()
   @ApiOkResponse({
     description: 'Returns the user data extracted from the JWT token',

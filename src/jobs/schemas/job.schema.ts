@@ -2,6 +2,7 @@ import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import { ApiProperty } from '@nestjs/swagger';
 
+// Jobs is the schema design for the jobs. 
 @Schema({timestamps:true})
 export class Jobs{
     @ApiProperty({ example: 'Software Engineer' })

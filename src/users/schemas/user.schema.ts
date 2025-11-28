@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-// Register schema is happening in here 
+// Register schema design. 
 @Schema({timestamps: true})
 export class User {
 @ApiProperty({   example: 'abdullahmmmaghrabi@gamil.com',    description: 'Unique email address of the user', })

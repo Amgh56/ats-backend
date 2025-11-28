@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Jobs } from './schemas/job.schema';
 import { UpdateJobDto } from './dto/updateJop.dto';
+
 // This service handles all the logic for creating, updating, and deleting jobs.
 @Injectable()
 export class JobsService {
@@ -11,7 +12,8 @@ export class JobsService {
     @InjectModel(Jobs.name)
     private readonly jobModel: Model<Jobs>,
   ) {}
-
+  
+  // Creates a new job post and assigns it to the business user who owns it.
   async createJob(dto: CreateJobsDto, ownerId: string) {
     const job = new this.jobModel({
       ...dto,     
@@ -39,6 +41,9 @@ export class JobsService {
     }
   }
 
+  // Updates an existing job post.
+  // Checks if the job exists and ensures that only the owner can update it.
+  // Applies the changes and returns the updated job.
   const updatedJob = await this.jobModel.findByIdAndUpdate(
     id,
     { $set: dto },
@@ -52,6 +57,9 @@ export class JobsService {
 
   }
 
+  // Deletes a job post.
+  // Only the owner of the job is allowed to delete it.
+  // Returns a confirmation message after successful deletion.
   async deleteJob(id: string, ownerId:string){
     const job = await this.jobModel.findById(id)
 

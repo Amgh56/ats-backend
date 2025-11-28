@@ -5,7 +5,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 
-
+// AuthServices handles all the authentication actions. like registering , password hashing and the jwt sign 
 @Injectable()
 export class AuthService {
   constructor(
@@ -13,6 +13,9 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  // handles the registeration logic 
+  // and check some rules for example like if this email is already there it gives a bad request. 
+  // if the user registered pass all the conditions we create a document with his information.
   async register(dto: RegisterDto) {
     const existing = await this.usersService.findByEmail(dto.email);
     if (existing) {
@@ -21,6 +24,7 @@ export class AuthService {
 
    const password_hash = await bcrypt.hash(dto.password, 10);
 
+   
    const user = await this.usersService.createUser(
     dto.email,
     password_hash,
@@ -34,6 +38,10 @@ export class AuthService {
   };
 
   }
+
+  // Handles the login logic
+  // how it works it check some rules like if the user is already there by checking his email and password.
+  // if he exsist it returns the users access_token and user information .
   async login(dto: LoginDto ){
     const user = await this.usersService.findByEmail(dto.email);
     if(!user){

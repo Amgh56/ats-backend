@@ -7,6 +7,7 @@ import { UpdateStatusDto } from './dto/updateStatus.dto';
 import { ApiNotFoundResponse,ApiForbiddenResponse,ApiOkResponse,ApiTags,ApiBadRequestResponse,ApiCreatedResponse,ApiOperation,ApiUnauthorizedResponse,ApiResponse,ApiBearerAuth,ApiConsumes,ApiBody,ApiParam,  ApiExtraModels, } from '@nestjs/swagger';
 import { Application } from './schemas/applications.schema';
 
+// This route is responsible for job applications. 
 @ApiTags('Applications')
 @ApiExtraModels(Application)
 @ApiExtraModels(CreateApplicationDto)
@@ -14,6 +15,8 @@ import { Application } from './schemas/applications.schema';
 export class ApplicationsController {
     constructor(private readonly applicationsService: ApplicationsService){}
 
+    // Handles job applications submitted by talents.
+    // Accepts resume (PDF) and applicant image (PNG).
     @Post()
     @ApiOperation({
         summary: 'Submit a job application with resume and applicant image',
@@ -108,6 +111,8 @@ export class ApplicationsController {
     );
     }
 
+    // Returns all applicants for a specific job.
+    // Only the owner of the job is allowed to view this list.
     @Get('job/:jobId')
     @UseGuards(AuthGuard('jwt'))
     @ApiBearerAuth()
@@ -188,6 +193,8 @@ export class ApplicationsController {
   );
 }
 
+// Allows the job owner to update an applicant’s status.
+// Status can only be "accepted" or "rejected".
 @Patch(':applicationId/status')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()

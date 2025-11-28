@@ -7,6 +7,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { multerConfig } from './multer.config';
 import { Jobs, JobsSchema } from '../jobs/schemas/job.schema';
 
+// Handles everything related to job applications.
 @Module({
   imports: [MulterModule.register(multerConfig),MongooseModule.forFeature([{name: Application.name, 
     schema: ApplicationSchema},{ name: Jobs.name, schema: JobsSchema }])],

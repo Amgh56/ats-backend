@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+// Validates data sent by applicants 
 export class CreateApplicationDto {
   @ApiProperty({
     example: 'Abdullah',

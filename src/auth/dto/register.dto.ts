@@ -1,7 +1,7 @@
 import { IsEmail, IsIn, IsString, MaxLength, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-// DTO for Register requests. Used to validate email, password, and role fields.
+// Register Dto validation we make sure that the data sent from the user is correct.
 export class RegisterDto {
   @ApiProperty({
     example: 'Abdullah@gmail.com',
