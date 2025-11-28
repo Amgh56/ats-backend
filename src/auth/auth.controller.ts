@@ -23,7 +23,7 @@ export class AuthController {
     @ApiCreatedResponse({ description: 'User registered successfully',schema: {
     example: {
       id: "6730dd1c4a07cf5ae14de5f2",
-      email: "abdullah@gmail.com",
+      email: "abdullahHaitham@gmail.com",
       role: "business"
     }
   }
