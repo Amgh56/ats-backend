@@ -1,19 +1,33 @@
-Applicant Tracking System (ATS) – Mini Assessment
+# Applicant Tracking System (ATS) – Mini Assessment
 
 A simplified backend ATS built using NestJS, MongoDB, JWT, Mongoose, DTO validation, file uploads, and Swagger API documentation.
 
 This API allows business users to create job posts and manage applicants, while talents can apply to jobs with their resume (PDF) and image (PNG).
 
-How to run?
+## How to run
 
+1. Clone the repository:
+   
 ```bash
-# 1. Clone the repository
 git clone https://github.com/Amgh56/ats-backend.git
 
-# 2. Install dependencies
+2. Go to the project directory:
+
+```bash
+cd ats-backend
+
+3. Install dependencies:
+
+```bash
 npm install
 
-# 3. Start the development server
+4. Start the development server:
+
+```bash
 npm run start:dev
 
-and you should use another terminal to check each function and send requests if you are wishing to test it from the terminal.
+5. Open Swagger UI in your browser: you will find a identical link to the one attached in the terminal after you start the development:
+
+```bash
+http://localhost:8000/api
+
