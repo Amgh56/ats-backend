@@ -13,21 +13,17 @@ git clone https://github.com/Amgh56/ats-backend.git
 
 2. Go to the project directory:
 
-```bash
 cd ats-backend
 
 3. Install dependencies:
 
-```bash
 npm install
 
 4. Start the development server:
 
-```bash
 npm run start:dev
 
 5. Open Swagger UI in your browser: you will find a identical link to the one attached in the terminal after you start the development:
 
-```bash
 http://localhost:8000/api
 
